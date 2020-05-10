@@ -1,0 +1,41 @@
+.records-page {
+  position: relative;
+  margin: 40px 10px;
+}
+
+.content {
+  width: 40%;
+}
+
+table {
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.mat-column-date {
+  width: 30%;
+}
+
+.mat-column-value {
+  width: 15%;
+}
+
+.mat-column-type {
+  width: 15%;
+}
+
+.mat-column-tags {
+  width: 15%;
+}
+
+.mat-column-operations {
+  width: 15%;
+}
+
+.mat-h1 {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.87);
+}

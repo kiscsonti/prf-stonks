@@ -1,0 +1,59 @@
+.upper {
+  background-color: rgb(63, 81, 181);
+  z-index: -1;
+}
+
+.text {
+  color: white;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.mat-display-3 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+
+.subheading {
+  margin-left: 10px;
+}
+.coins {
+  color: goldenrod;
+}
+
+button {
+  color: rgb(63, 81, 181);
+}
+.mat-stroked-button {
+  background: white;
+  margin-left: 10px;
+}
+
+.lower {
+  margin-top: 30px;
+}
+
+.mat-card {
+  width: 300px;
+  height: 300px;
+  margin: 10px;
+}
+
+.card-heading {
+  color: rgb(57, 58, 61);
+  text-align: center;
+  font-weight: bold;
+}
+
+.card-subheading {
+  color: rgb(57, 58, 61);
+  padding-top: 20px;
+  text-align: center;
+}
+
+.card-icon {
+  text-align: center;
+  padding: 15px;
+  color: #ff4081;
+}

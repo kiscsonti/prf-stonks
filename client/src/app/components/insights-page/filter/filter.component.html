@@ -1,0 +1,36 @@
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit(filterForm.value)">
+  <mat-card class="mat-elevation-z3" fxLayout="row wrap" fxLayoutAlign="space-around center">
+    <mat-form-field fxFlex="0 0 15%" fxFlexOrder.lt-lg="1" fxFlex.lt-lg="0 0 40%">
+      <mat-label>From</mat-label>
+      <input matInput [matDatepicker]="fromDate" formControlName="fromDate" [max]="f.toDate.value" readonly>
+      <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+      <mat-datepicker [touchUi]="onMobile" #fromDate></mat-datepicker>
+      <mat-error *ngIf="f.fromDate.errors && f.fromDate.errors.required">
+        Required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="0 0 15%" fxFlexOrder.lt-lg="3" fxFlex.lt-lg="0 0 40%">
+        <mat-label>To</mat-label>
+        <input matInput [matDatepicker]="toDate" formControlName="toDate" [min]="f.fromDate.value" [max]="dateNow" readonly>
+        <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+        <mat-datepicker [touchUi]="onMobile" #toDate></mat-datepicker>
+      <mat-error *ngIf="f.toDate.errors && f.toDate.errors.required">
+        Required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="0 0 15%" fxFlexOrder.lt-lg="2" fxFlex.lt-lg="0 0 40%">
+      <mat-label>Tags to include</mat-label>
+      <mat-select  multiple formControlName="includingTags">
+        <mat-option *ngFor="let tag of tags" [value]="tag">{{ tag }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field fxFlex="0 0 15%" fxFlexOrder.lt-lg="4" fxFlex.lt-lg="0 0 40%">
+      <mat-label>Tags to exclude</mat-label>
+      <mat-select  multiple formControlName="excludingTags">
+        <mat-option *ngFor="let tag of tags" [value]="tag">{{ tag }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+      <button fxFlex="0 0 15%" fxFlexOrder.lt-lg="5" fxFlex.lt-lg="0 0 35%" mat-raised-button [disabled]="filterForm.invalid" color="primary" type="submit">Filter</button>
+  </mat-card>
+</form>
+

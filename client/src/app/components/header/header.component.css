@@ -1,0 +1,37 @@
+.header {
+  margin: 0;
+  padding-right: 5px;
+}
+
+.page-logo {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+  outline: none;
+}
+
+.page-name {
+  cursor: pointer;
+  outline: none;
+}
+
+.user-icon {
+  margin-bottom: 0;
+  margin-right: 10px;
+}
+
+.username {
+  margin: 0;
+  margin-right: 5px;
+}
+
+.divider {
+  margin: 10px 5px;
+}
+
+.logout-divider {
+  margin: 10px 10px;
+  margin-right: 0;
+}
+

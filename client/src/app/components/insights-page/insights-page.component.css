@@ -1,0 +1,74 @@
+.page {
+  margin: 0 10px;
+}
+
+.filter-big {
+  margin: 0 10px;
+}
+
+.filter-small {
+  margin: 0 0;
+}
+
+.big-card {
+  margin: 10px 10px 10px 10px;
+}
+
+.small-card {
+  margin: 0 0 10px 0;
+}
+
+mat-card-title {
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+}
+
+.emphasized-text {
+  color: #ff4081;
+  font-weight: bold;
+}
+
+.emphasized-tags {
+  color: #3f51b5;
+  font-weight: bold;
+}
+
+.divider {
+  margin: 0 0;
+}
+
+.mat-headline {
+  font-size: 20px;
+  margin: 5px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.brief-title {
+  margin-bottom: 10px;
+}
+
+.import {
+  margin-bottom: 20px;
+}
+
+.export {
+  margin-bottom: 20px;
+}
+
+.export-divider {
+}
+
+.no-data-text {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.big-no-data-text {
+  width: 40%;
+  margin-top: 50px;
+}
+
+.small-no-data-text {
+  width: 100%;
+  margin: 20px 0;
+}

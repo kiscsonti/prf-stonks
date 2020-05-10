@@ -1,0 +1,53 @@
+<h1 mat-dialog-title *ngIf="data">Modify record</h1>
+<h1 mat-dialog-title *ngIf="!data">Add a new record</h1>
+<form [formGroup]="recordForm" (ngSubmit)="onSubmit(recordForm.value)">
+  <div mat-dialog-content fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <mat-form-field>
+      <mat-label>Value</mat-label>
+      <input matInput id="amount" formControlName="amount">
+      <mat-error *ngIf="f.amount.errors && f.amount.errors.required">
+        Required
+      </mat-error>
+      <mat-error *ngIf="f.amount.errors && f.amount.errors.pattern">
+        Can only be a number
+      </mat-error>
+      <mat-error *ngIf="f.amount.errors && f.amount.errors.min">
+        Must be at least 1
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput id="date" [matDatepicker]="date" formControlName="date" [max]="dateNow" readonly>
+      <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+      <mat-datepicker [touchUi]="onMobile" #date></mat-datepicker>
+      <mat-error *ngIf="f.date.errors && f.date.errors.required">
+        Required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Tags</mat-label>
+      <input matInput id="tags" formControlName="tags" placeholder="tag1, tag2...">
+      <mat-error *ngIf="f.tags.errors && f.tags.errors.required">
+        Required
+      </mat-error>
+    </mat-form-field>
+    <mat-radio-group
+      aria-labelledby="radio-group-label"
+      class="radio-group"
+      fxLayout="row"
+      fxLayoutGap="10px"
+      formControlName="type">
+      <mat-radio-button class="mat-subheading-1 radio-button" value="income">
+        Income
+      </mat-radio-button>
+      <mat-radio-button class="mat-subheading-1 radio-button" value="expense">
+        Expense
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div mat-dialog-actions fxLayout="row" fxLayoutAlign="center">
+    <button mat-flat-button fxFlex="30" color="primary" type="submit" [disabled]="recordForm.invalid">Submit</button>
+    <button mat-flat-button fxFlex="30" color="primary" type="button" (click)="onCancel()">Cancel</button>
+  </div>
+</form>
+

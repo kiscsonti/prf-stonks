@@ -1,0 +1,40 @@
+<div class="page" fxLayout="flex row" fxLayoutAlign="center">
+  <mat-card class="register-card mat-elevation-z5">
+    <mat-card-title fxLayout="flex row" fxLayoutAlign="start center">
+      Sign Up
+    </mat-card-title>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+      <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+        <p class="error mat-body-1" *ngIf="error">
+          {{ error }}
+        </p>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput id="username" type="username" formControlName="username">
+          <mat-error *ngIf="f.username.errors && f.username.errors.required">
+            Required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput id="password" type="password" formControlName="password">
+          <mat-error *ngIf="f.password.errors && f.password.errors.required">
+            Required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <input matInput id="confirmPassword" type="password" formControlName="confirmPassword">
+          <mat-error *ngIf="f.confirmPassword.errors && f.confirmPassword.errors.required">
+            Required
+          </mat-error>
+          <mat-error *ngIf="f.confirmPassword.errors && f.confirmPassword.errors.mustMatch">
+            Passwords must match
+          </mat-error>
+        </mat-form-field>
+        <button [disabled]="registerForm.invalid" mat-flat-button type="submit" color="primary">Sign Up</button>
+      </mat-card-content>
+    </form>
+
+  </mat-card>
+</div>

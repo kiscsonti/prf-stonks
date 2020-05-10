@@ -1,0 +1,47 @@
+<div class="page">
+  <div class="upper" fxLayout="row" fxLayoutAlign="space-around center">
+    <div class="text">
+      <h1 class="mat-display-3">Get in control of your spendings!</h1>
+      <h2 class="mat-h3 subheading">We help you effortlessly manage your finances in one place.</h2>
+      <button mat-stroked-button routerLink="/register">GET STARTED</button>
+    </div>
+    <div class="coins" fxHide.lt-md="true">
+      <fa-icon class="mat-display-1" [icon]="faCoins" size="5x"></fa-icon>
+    </div>
+  </div>
+  <div class ="lower" fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card>
+      <div class="card-icon">
+        <fa-icon [icon]="faListAlt" size="3x"></fa-icon>
+      </div>
+      <h1 class="mat-headline card-heading">
+        Keep track of all the money you've spent
+      </h1>
+      <p class="mat-h3 card-subheading">
+        Log every individual spending you've made, and organize them into premade and custom categories.
+      </p>
+    </mat-card>
+    <mat-card>
+      <div class="card-icon">
+        <fa-icon [icon]="faChartBar" size="3x"></fa-icon>
+      </div>
+      <h1 class="mat-headline card-heading">
+        Learn about your spending habits
+      </h1>
+      <p class="mat-h3 card-subheading">
+        Gain insights about how you spend your money through various informative charts.
+      </p>
+    </mat-card>
+    <mat-card>
+      <div class="card-icon">
+        <fa-icon [icon]="faCloudDownloadAlt" size="3x"></fa-icon>
+      </div>
+      <h1 class="mat-headline card-heading">
+        Export your data to use it anywhere
+      </h1>
+      <p class="mat-h3 card-subheading">
+        Save your data (or part of it) in the widely supported .csv format.
+      </p>
+    </mat-card>
+  </div>
+</div>

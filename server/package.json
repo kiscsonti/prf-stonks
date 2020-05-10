@@ -1,0 +1,38 @@
+{
+  "name": "prf-kotprog-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idarav/prf-kotprog.git"
+  },
+  "author": "Zoltán Biacsi, Péter Kardos, Endre Váradi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/idarav/prf-kotprog/issues"
+  },
+  "homepage": "https://github.com/idarav/prf-kotprog#readme",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "csv-parser": "^2.3.2",
+    "escape-string-regexp": "^3.0.0",
+    "export-to-csv": "^0.2.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "hotswap": "^1.1.0",
+    "moment": "^2.24.0",
+    "mongoose": "^5.9.5",
+    "papaparse": "^5.2.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "random": "^2.2.0",
+    "underscore": "^1.10.2"
+  }
+}

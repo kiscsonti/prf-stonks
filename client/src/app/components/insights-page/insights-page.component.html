@@ -1,0 +1,144 @@
+<div class="page" fxLayout="column" fxLayoutGap="10px">
+  <app-filter ngClass.gt-sm="filter-big" ngClass.lt-md="filter-small" [tags]="tags" (filterBy)="getRecords($event, false)"></app-filter>
+  <div class="page-content"
+       fxLayout="row wrap"
+       fxLayoutAlign="center"
+       fxLayoutAlign.lt-md="center"
+       *ngIf="records && records.length > 0"
+       [@zoomInAnimation]>
+    <mat-card class="mat-elevation-z3"  *ngIf="records" fxFlex="0 0 95.3%" fxFlex.lt-md="0 0 100%" ngClass.gt-sm="big-card" ngClass.lt-md="small-card">
+      <app-balance-over-time-chart [filtered]="filtered" [records]="records"></app-balance-over-time-chart>
+    </mat-card>
+    <mat-card class="mat-elevation-z3" *ngIf="records" fxFlex="0 0 47%" fxFlex.lt-md="0 0 100%" ngClass.gt-sm="big-card" ngClass.lt-md="small-card">
+      <app-spendings-by-tags-chart [filtered]="filtered" [records]="records"></app-spendings-by-tags-chart>
+    </mat-card>
+    <mat-card class="mat-elevation-z3" fxFlex="0 0 47%" fxFlex.lt-md="0 0 100%" ngClass.gt-sm="big-card" ngClass.lt-md="small-card">
+      <app-spendings-over-time-chart [filtered]="filtered" [records]="records"></app-spendings-over-time-chart>
+    </mat-card>
+    <mat-card class="mat-elevation-z3" fxFlex="0 0 47%" fxFlex.lt-md="0 0 100%" ngClass.gt-sm="big-card" ngClass.lt-md="small-card">
+      <mat-card-title class="brief-title">Brief</mat-card-title>
+      <div fxLayout="column" fxLayoutAlign="center start">
+        <div class="mat-headline">
+          You have spent a total of <span class="emphasized-text">{{ sum.exp }}</span> during this time period
+        </div>
+        <mat-divider class="divider" inset="true" fxFlexAlign="center"></mat-divider>
+        <div class="mat-headline">
+          You have produced an income of <span class="emphasized-text">{{ sum.inc }}</span>
+        </div>
+        <mat-divider class="divider" inset="true" fxFlexAlign="center"></mat-divider>
+        <div class="mat-headline">
+          Your overall balance during this period is <span class="emphasized-text">{{ sum.inc - sum.exp }}</span>
+        </div>
+        <mat-divider class="divider" inset="true" fxFlexAlign="center"></mat-divider>
+        <div class="mat-headline">
+          On average, you have spent a daily amount of <span class="emphasized-text">{{ average }}</span>
+        </div>
+        <mat-divider class="divider" inset="true" fxFlexAlign="center"></mat-divider>
+        <div class="mat-headline">
+          Your single largest expense amounted to <span class="emphasized-text">{{ biggest.value }}</span>
+          <span *ngIf="biggest.tags">, and it was spent on <span class="emphasized-tags">{{ biggest.tags }}</span></span>
+          <span *ngIf="!biggest.tags">.</span>
+        </div>
+      </div>
+    </mat-card>
+    <div fxFlex="0 0 47%" fxFlex.lt-md="0 0 100%" fxLayout="row wrap" fxLayoutAlign="space-between" ngClass.gt-sm="big-card" ngClass.lt-md="small-card">
+      <mat-card class="mat-elevation-z3" fxFlex="0 0 49%" fxLayout="column" fxLayoutAlign="space-between">
+        <mat-card-title >Import data</mat-card-title>
+        <div class="mat-subheading-1">Extend your current data or replace it altogether by a CSV formatted file.</div>
+        <mat-card-content fxLayout="column" fxLayoutAlign="center start">
+          <div class="import" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="start start">
+            <mat-radio-group
+              aria-labelledby="radio-group-label"
+              class="radio-group"
+              fxLayout="column"
+              fxLayoutGap="10px"
+              [(ngModel)]="replaceUpload">
+              <mat-radio-button class="mat-body-1 radio-button" [value]="false">
+                Extend
+              </mat-radio-button>
+              <mat-radio-button class="mat-body-1" [value]="true">
+                Replace
+              </mat-radio-button>
+            </mat-radio-group>
+            <mat-divider inset></mat-divider>
+            <input
+              #fileInput
+              id="input-file-id"
+              type="file"
+              [multiple]="false"
+              accept=".csv"
+              hidden
+              (change)="uploadCSV( fileInput.files ) ; fileInput.value = null;"
+            />
+            <button type="button" mat-raised-button color="primary" (click)="fileInput.click()">Import from CSV</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="mat-elevation-z3" fxFlex="0 0 49%" fxLayout="column" fxLayoutAlign="space-between">
+        <mat-card-title >Export data</mat-card-title>
+        <div class="mat-subheading-1">Export the data you currently have filtered, or all of your data in CSV format.</div>
+        <mat-card-content fxLayout="column" fxLayoutAlign="center start">
+          <div class="export" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="start start">
+            <mat-radio-group
+              aria-labelledby="radio-group-label"
+              class="radio-group"
+              fxLayout="column"
+              fxLayoutGap="10px"
+              [(ngModel)]="filteredDownload">
+              <mat-radio-button class="mat-body-1 radio-button" [value]="true">
+                Filtered only
+              </mat-radio-button>
+              <mat-radio-button class="mat-body-1" [value]="false">
+                Everything
+              </mat-radio-button>
+            </mat-radio-group>
+            <mat-divider class="export-divider" inset style="margin: 10px"></mat-divider>
+            <button mat-raised-button color="primary" (click)="downloadCSV()">
+              Export to CSV
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="no-data" *ngIf="(!records || !records.length) && !loading && !error" [@zoomInAnimation]>
+    <div  fxLayout="column wrap" fxLayoutAlign="center center" ngClass.gt-sm="big-card" ngClass.lt-md="small-card">
+      <div class="no-data-text" ngClass.gt-sm="big-no-data-text mat-display-1" ngClass.lt-md="small-no-data-text mat-headline">
+        It looks like you have no data which satisfies your filtering criteria. Head over
+        to the <span class="emphasized-tags">Records</span> tab to add some, or click below to
+        import.
+      </div>
+      <mat-card class="mat-elevation-z3" fxFlex="0 0 49%" fxLayout="column" fxLayoutAlign="space-between">
+        <mat-card-title style="text-align: center">Import data</mat-card-title>
+        <div class="mat-subheading-1" style="text-align: center">Extend your current database or replace it altogether by a CSV formatted file.</div>
+        <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+          <div class="import" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="start center">
+            <mat-radio-group
+              aria-labelledby="radio-group-label"
+              class="radio-group"
+              fxLayout="column"
+              fxLayoutGap="10px"
+              [(ngModel)]="replaceUpload">
+              <mat-radio-button class="mat-body-1 radio-button" [value]="false">
+                Extend
+              </mat-radio-button>
+              <mat-radio-button class="mat-body-1" [value]="true">
+                Replace
+              </mat-radio-button>
+            </mat-radio-group>
+            <mat-divider inset></mat-divider>
+            <input
+              #fileInput
+              type="file"
+              [multiple]="false"
+              accept=".csv"
+              hidden
+              (change)="uploadCSV( fileInput.files ) ; fileInput.value = null;"
+            />
+            <button type="button" mat-raised-button color="primary" (click)="fileInput.click()">Import from CSV</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

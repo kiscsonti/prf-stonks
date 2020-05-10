@@ -1,0 +1,26 @@
+<mat-toolbar class="header mat-elevation-z20" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="10px" fxLayoutGap.lt-sm="0px" color="primary">
+  <div fxFlexAlign="center">
+    <fa-icon class="page-logo mat-display-1" [icon]="faChartLine" [routerLink]="authService.isAuthenticated() ? '/insights' : '/'"></fa-icon>
+    <span class="mat-display-1 page-name" fxHide.lt-md="true" [routerLink]="authService.isAuthenticated() ? '/insights' : '/'">STONKS</span>
+  </div>
+  <mat-divider class="divider" [vertical]="true" *ngIf="authService.isAuthenticated()"></mat-divider>
+  <div *ngIf="!authService.isAuthenticated()" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center">
+    <button class="login-button" mat-flat-button routerLink="/login" color="primary">Log in</button>
+    <mat-divider class="divider" [vertical]="true"></mat-divider>
+    <button mat-flat-button routerLink="/register" color="primary">Register</button>
+  </div>
+  <div *ngIf="authService.isAuthenticated()" fxLayout="row" fxLayoutAlign="space-between" fxFlex="1 1 100%">
+    <div fxLayout="row" fxLayoutAlign="start" fxFlex="1 1 100%">
+      <button class="nav-button" mat-flat-button routerLink="/insights" color="primary" fxFlexAlign="center">Insights</button>
+      <button class="nav-button" mat-flat-button routerLink="/records" color="primary" fxFlexAlign="center">Records</button>
+    </div>
+    <div fxLayout="row">
+      <fa-icon class="user-icon mat-subheading-1" [icon]="faUser" fxFlexAlign="center" fxHide.lt-sm="true"></fa-icon>
+      <span class="username mat-h2" fxFlexAlign="center" fxHide.lt-sm="true">
+        {{ authService.user.username }}
+      </span>
+      <mat-divider class="logout-divider" [vertical]="true"></mat-divider>
+      <button mat-flat-button routerLink="/" color="primary" (click)="logout()" fxFlexAlign="center">Log out</button>
+    </div>
+  </div>
+</mat-toolbar>

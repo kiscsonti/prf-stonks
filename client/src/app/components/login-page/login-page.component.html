@@ -1,0 +1,23 @@
+<div class="page" fxLayout="flex row" fxLayoutAlign="center">
+  <mat-card class="login-card mat-elevation-z5">
+    <mat-card-title fxLayout="flex row" fxLayoutAlign="start center">
+      Log in
+    </mat-card-title>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+      <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+        <p class="error mat-body-1" *ngIf="error">
+          {{ error }}
+        </p>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput id="username" type="username" formControlName="username">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput id="password" type="password" formControlName="password">
+        </mat-form-field>
+        <button mat-flat-button type="submit" color="primary">Sign In</button>
+      </mat-card-content>
+    </form>
+  </mat-card>
+</div>

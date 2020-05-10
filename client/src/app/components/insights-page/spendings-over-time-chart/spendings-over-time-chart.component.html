@@ -1,0 +1,27 @@
+<mat-card-title fxLayout="row" fxLayoutAlign="space-between">
+  <div>Income and expenses by date</div>
+  <mat-radio-group
+    aria-labelledby="radio-group-label"
+    class="radio-group"
+    fxLayout="row"
+    [(ngModel)]="scaleBy">
+    <mat-radio-button class="mat-subheading-1 radio-button" value="day">
+      Daily
+    </mat-radio-button>
+    <mat-radio-button class="mat-subheading-1" value="month">
+      Monthly
+    </mat-radio-button>
+  </mat-radio-group>
+</mat-card-title>
+<div *mobxAutorun>
+  <div style="display: block" *ngIf="sumsByTime">
+    <canvas baseChart
+            [datasets]="sumsByTime.chartData"
+            [labels]="sumsByTime.chartLabels"
+            [options]="lineChartOptions"
+            [legend]="false"
+            [colors]="chartColors"
+            [chartType]="barChartType">
+    </canvas>
+  </div>
+</div>
