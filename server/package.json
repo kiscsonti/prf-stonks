@@ -24,7 +24,7 @@
     "csv-parser": "^2.3.2",
     "escape-string-regexp": "^3.0.0",
     "export-to-csv": "^0.2.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-session": "^1.17.0",
     "hotswap": "^1.1.0",
     "moment": "^2.24.0",
